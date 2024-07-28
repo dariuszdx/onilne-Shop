@@ -1,5 +1,6 @@
 import "./components/productList/productList.css";
-import ProductList from "../src/components/productList/productList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ProductList from "./components/productList/productList";
 
 function App() {
   return (
@@ -13,5 +14,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

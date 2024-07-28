@@ -1,13 +1,5 @@
 import React from "react";
-
-export interface Product {
-  id: number;
-  name: string;
-  type: string;
-  model: string;
-  price: number;
-  status: string;
-}
+import { Product } from "../../models/Product";
 
 const ProductList: React.FC = () => {
   const products: Product[] = [
@@ -44,11 +36,10 @@ const ProductList: React.FC = () => {
       status: "?",
     },
   ];
-
   return (
     <div>
       <h2>Product List</h2>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
