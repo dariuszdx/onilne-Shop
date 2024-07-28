@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Product } from "../../models/Product";
 
 const ProductList: React.FC = () => {
@@ -36,8 +36,28 @@ const ProductList: React.FC = () => {
       status: "?",
     },
   ];
+
+  const [displayData, setDisplayData] = useState(products);
+
+  const handleSearchType = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const phrase = event.currentTarget.value.toLowerCase();
+    const filteredProducts = products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(phrase) ||
+        product.type.toLowerCase().includes(phrase) ||
+        product.model.toLowerCase().includes(phrase)
+    );
+    setDisplayData(filteredProducts);
+  };
+
   return (
     <div>
+      <input
+        onKeyUp={handleSearchType}
+        placeholder="Wyszukiwana fraza"
+        type="search"
+        className="form-control"
+      />
       <h2>Product List</h2>
       <table className="table">
         <thead>
@@ -50,7 +70,7 @@ const ProductList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {displayData.map((product) => (
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.type}</td>
